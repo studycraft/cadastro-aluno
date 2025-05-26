@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'alunos/style.css' %}">
+
+<h1>{% if aluno %}Editar{% else %}Cadastrar{% endif %} Aluno</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <label>Nome: <input type="text" name="nome" value="{{ aluno.nome|default:'' }}"></label><br>
+    <label>RA: <input type="text" name="ra" value="{{ aluno.ra|default:'' }}"></label><br>
+    <label>Turma: <input type="text" name="turma" value="{{ aluno.turma|default:'' }}"></label><br>
+    <label>Trilhas:<br>
+        <select name="trilhas" multiple>
+            <option value="Front-End">Front-End</option>
+            <option value="Back-End">Back-End</option>
+            <option value="Data Science">Data Science</option>
+        </select>
+    </label><br>
+    <button type="submit">Salvar</button>
+</form>
+
+<a href="{% url 'listar_alunos' %}">Voltar</a>
